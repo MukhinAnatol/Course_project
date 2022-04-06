@@ -25,26 +25,8 @@ class VkUser:
         }
         req = requests.get(get_photo_url, params={**self.params, **get_photo_params})
         response = req.json()['response']['items']
-        #return response
-        photos_list = []
-        for item in response:
-            photos_dict = {
-                'file name': f'{item["likes"]["count"]}.jpg',
-                'size': item['sizes'][-1]['type'],
-                'url': item['sizes'][-1]['url']
-            }
-            photos_list.append(photos_dict)
-        return photos_list
+        return response
 
 
-
-#target_group_ids = ','.join([str(group['id']) for group in target_groups])
-
-
-
-Client = VkUser(VK_Token)
-pprint(Client.get_photos_vk(552934290))
-
-#while True:
-    #user_id = input('Введите id пользователя: ')
-    #ya_disc_token = input('Введите токен для работы с яндекс диском: ')
+# Client = VkUser(VK_Token)
+# pprint(Client.get_photos_vk(552934290))
