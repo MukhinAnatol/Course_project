@@ -2,7 +2,8 @@ from pprint import pprint
 from API_VK import VkUser
 from Ya_upload import YaUploader
 import time
-from progress.bar import Bar
+from progress.bar import ChargingBar
+import json
 
 with open('VK_Token.txt', 'rt') as f:
     VK_Token = f.read().strip()
@@ -16,7 +17,7 @@ def main_function(user_id, vk_token, ya_token, folder_path):
     ya.create_folder(f'test_path/{folder_path}')
     result = client.get_photos_vk(user_id)
     photos_list = []
-    with Bar('Processing', max=len(result)) as bar:
+    with ChargingBar('Processing', max=len(result)) as bar:
         for item in result:
             photos_dict = {
                 'file name': f'{item["likes"]["count"]}_{item["date"]}.jpg',
@@ -30,7 +31,8 @@ def main_function(user_id, vk_token, ya_token, folder_path):
             time.sleep(1)
     bar.finish()
     pprint(photos_list)
-    return photos_list
+    with open('upload_result.json', mode='wt', encoding='utf-8') as file:
+        json.dump(photos_list, file)
 
 
 if __name__ == '__main__':
