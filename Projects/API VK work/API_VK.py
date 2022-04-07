@@ -1,6 +1,4 @@
 import requests
-import time
-from pprint import pprint
 
 with open('VK_Token.txt', 'rt') as f:
      VK_Token = f.read().strip()
@@ -27,6 +25,3 @@ class VkUser:
         response = req.json()['response']['items']
         return response
 
-
-# Client = VkUser(VK_Token)
-# pprint(Client.get_photos_vk(552934290))
