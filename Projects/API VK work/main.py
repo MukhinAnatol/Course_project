@@ -8,8 +8,6 @@ import json
 with open('VK_Token.txt', 'rt') as f:
     VK_Token = f.read().strip()
 
-vk_id = 552934290
-ya_Token = 'AQAAAABRsTZTAADLW67xtAuJnUtIsPOYsqtQA50'
 
 def main_function(user_id, vk_token, ya_token, folder_path):
     client = VkUser(vk_token)
