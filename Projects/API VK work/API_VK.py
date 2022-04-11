@@ -14,14 +14,14 @@ class VkUser:
             'v': version
         }
 
-    def get_photos_vk(self, user_id):
+    def get_photos_vk(self, user_id, qty):
         get_photo_url = self.url + 'photos.get'
         get_photo_params = {
             'owner_id': user_id,
             'album_id': 'profile',
             'extended': '1',
             'rev': '0',
-            'count': 5,
+            'count': qty,
             'photo_sizes': '1'
         }
         req = requests.get(get_photo_url, params={**self.params, **get_photo_params})
